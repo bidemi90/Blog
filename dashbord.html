@@ -637,6 +637,7 @@
 
 
     function submit() {
+        headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
         if (document.getElementById("title").value == "" || document.getElementById("textarea").value == "") {
             alert("fill input space")
         } else {
@@ -657,22 +658,25 @@
                 document.getElementById("inthisplace2").innerHTML = ""
 
                 for (let index = 0; index < postarray.length; index++) {
-                    const abdullahi = postarray[index];
+            const abdullahi = postarray[index];
 
-                    document.getElementById("inthisplace2").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+            document.getElementById("inthisplace2").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
                 <p> Author:${abdullahi.Author}</p>
                     <p> ${abdullahi.time} <div class="buttondiv"><button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div></div>`
-                }
 
-                if (postarray[index].change == false) {
-                    document.getElementById(index).style.background = "white"
-                    document.getElementById(index).style.color = "black"
-                    document.getElementById(index).innerHTML = "like"
-                } else {
-                    document.getElementById(index).style.background = "blue"
-                    document.getElementById(index).style.color = "white"
-                    document.getElementById(index).innerHTML = "unlike"
-                }
+            if (postarray[index].change == false) {
+                document.getElementById(index).style.background = "white"
+                document.getElementById(index).style.color = "black"
+                document.getElementById(index).innerHTML = "like"
+            } else {
+                document.getElementById(index).style.background = "blue"
+                document.getElementById(index).style.color = "white"
+                document.getElementById(index).innerHTML = "unlike"
+            }
+        }
+
+
+
 
 
                 document.getElementById("inthisplace").style.display = "none"
