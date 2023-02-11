@@ -2,326 +2,371 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <style>
-    
- * {
-  padding: 0;
-  margin: 0;
-  color: #1a1f36;
-  box-sizing: border-box;
-  word-wrap: break-word;
-  font-family: cursive;
-}
-body {
-    min-height: 100%;
-    background-color: #ffffff;
-}
-h1 {
-    letter-spacing: -1px;
-}
-a {
-  color: #5469d4;
-  text-decoration: unset;
-}
-.login-root {
-    background: #fff;
-    display: flex;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
-}
-.loginbackground {
-    min-height: 692px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 0;
-    overflow: hidden;
-}
-.flex-flex {
-    display: flex;
-}
-.align-center {
-  align-items: center; 
-}
-.center-center {
-  align-items: center;
-  justify-content: center;
-}
-.box-root {
-    box-sizing: border-box;
-}
-.flex-direction--column {
-    -ms-flex-direction: column;
-    flex-direction: column;
-}
-.loginbackground-gridContainer {
-    display: -ms-grid;
-    display: grid;
-    grid-template-columns: [start] 1fr [left-gutter] repeat(16,86.6px) [left-gutter] 1fr [end];
-    grid-template-rows: [top] 1fr [top-gutter] repeat(8,64px) [bottom-gutter] 1fr [bottom];
-    justify-content: center;
-    margin: 0 -2%;
-    transform: rotate(-12deg) skew(-12deg);
-}
-.box-divider--light-all-2 {
-    box-shadow: inset 0 0 0 2px #e3e8ee;
-}
-.box-background--blue {
-    background-color: #5469d4;
-}
-.box-background--white {
-  background-color: #ffffff; 
-}
-.box-background--blue800 {
-    background-color: #212d63;
-}
-.box-background--gray100 {
-    background-color: #e3e8ee;
-}
-.box-background--cyan200 {
-    background-color: #7fd3ed;
-}
-.padding-top--64 {
-  padding-top: 64px;
-}
-.padding-top--24 {
-  padding-top: 24px;
-}
-.padding-top--48 {
-  padding-top: 48px;
-}
-.padding-bottom--24 {
-  padding-bottom: 24px;
-}
-.padding-horizontal--48 {
-  padding: 48px;
-}
-.padding-bottom--15 {
-  padding-bottom: 15px;
-}
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      color: #1a1f36;
+      box-sizing: border-box;
+      word-wrap: break-word;
+      font-family: cursive;
+    }
+
+    body {
+      min-height: 100%;
+      background-color: #ffffff;
+    }
+
+    h1 {
+      letter-spacing: -1px;
+    }
+
+    a {
+      color: #5469d4;
+      text-decoration: unset;
+    }
+
+    .login-root {
+      background: #fff;
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .loginbackground {
+      min-height: 692px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .flex-flex {
+      display: flex;
+    }
+
+    .align-center {
+      align-items: center;
+    }
+
+    .center-center {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .box-root {
+      box-sizing: border-box;
+    }
+
+    .flex-direction--column {
+      -ms-flex-direction: column;
+      flex-direction: column;
+    }
+
+    .loginbackground-gridContainer {
+      display: -ms-grid;
+      display: grid;
+      grid-template-columns: [start] 1fr [left-gutter] repeat(16, 86.6px) [left-gutter] 1fr [end];
+      grid-template-rows: [top] 1fr [top-gutter] repeat(8, 64px) [bottom-gutter] 1fr [bottom];
+      justify-content: center;
+      margin: 0 -2%;
+      transform: rotate(-12deg) skew(-12deg);
+    }
+
+    .box-divider--light-all-2 {
+      box-shadow: inset 0 0 0 2px #e3e8ee;
+    }
+
+    .box-background--blue {
+      background-color: #5469d4;
+    }
+
+    .box-background--white {
+      background-color: #ffffff;
+    }
+
+    .box-background--blue800 {
+      background-color: #212d63;
+    }
+
+    .box-background--gray100 {
+      background-color: #e3e8ee;
+    }
+
+    .box-background--cyan200 {
+      background-color: #7fd3ed;
+    }
+
+    .padding-top--64 {
+      padding-top: 64px;
+    }
+
+    .padding-top--24 {
+      padding-top: 24px;
+    }
+
+    .padding-top--48 {
+      padding-top: 48px;
+    }
+
+    .padding-bottom--24 {
+      padding-bottom: 24px;
+    }
+
+    .padding-horizontal--48 {
+      padding: 48px;
+    }
+
+    .padding-bottom--15 {
+      padding-bottom: 15px;
+    }
 
 
-.flex-justifyContent--center {
-  -ms-flex-pack: center;
-  justify-content: center;
-}
+    .flex-justifyContent--center {
+      -ms-flex-pack: center;
+      justify-content: center;
+    }
 
-.formbg {
-    margin: 0px auto;
-    width: 100%;
-    max-width: 448px;
-    background: white;
-    border-radius: 4px;
-    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
-}
-span {
-    display: block;
-    font-size: 20px;
-    line-height: 28px;
-    color: #1a1f36;
-}
-label {
-    margin-bottom: 10px;
-}
-.reset-pass a,label {
-    font-size: 14px;
-    font-weight: 600;
-    display: block;
-}
-.reset-pass > a {
-    text-align: right;
-    margin-bottom: 10px;
-}
-.grid--50-50 {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    align-items: center;
-}
+    .formbg {
+      margin: 0px auto;
+      width: 100%;
+      max-width: 448px;
+      background: white;
+      border-radius: 4px;
+      box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+    }
 
-.field input {
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 16px;
-    width: 100%;
-    min-height: 44px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-}
-button {
-    font-size: 16px;
-    line-height: 28px;
-    padding: 8px 16px;
-    width: 100%;
-    min-height: 44px;
-    border: unset;
-    border-radius: 4px;
-    outline-color: rgb(84 105 212 / 0.5);
-    background-color: rgb(255, 255, 255);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-}
+    span {
+      display: block;
+      font-size: 20px;
+      line-height: 28px;
+      color: #1a1f36;
+    }
 
-button {
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0.12) 0px 1px 1px 0px, 
-                rgb(84, 105, 212) 0px 0px 0px 1px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px, 
-                rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-}
-.inputpass {
-            font-size: 16px;
-            line-height: 28px;
-            padding: 8px 16px;
-            width: 80%;
-            min-height: 44px;
-            border: unset;
-            border-radius: 4px;
-            outline-color: rgb(84 105 212 / 0.5);
-            background-color: rgb(255, 255, 255);
-            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-        }
-        .passdiv{
-            display: flex;
-        }
-        .see{
-            width: 20%;
-            height: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            
-        }
+    label {
+      margin-bottom: 10px;
+    }
 
-        .see {
-           color: black;
-            min-height: 44px;
-            border: unset;
-            border-radius: 4px;
-            outline-color: rgb(84 105 212 / 0.5);
-            background-color: rgb(255, 255, 255);
-            box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-                rgba(0, 0, 0, 0) 0px 0px 0px 0px;
-        }
-        .material-symbols-outlined{
-            margin: 0;
-            padding: 0;
-        }
-.field-checkbox input {
-    width: 20px;
-    height: 15px;
-    margin-right: 5px; 
-    box-shadow: unset;
-    min-height: unset;
-}
-.field-checkbox label {
-    display: flex;
-    align-items: center;
-    margin: 0;
-}
-a.ssolink {
-    display: block;
-    text-align: center;
-    font-weight: 600;
-}
-.footer-link span {
-    font-size: 14px;
-    text-align: center;
-}
-.listing a {
-    color: #697386;
-    font-weight: 600;
-    margin: 0 10px;
-}
+    .reset-pass a,
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      display: block;
+    }
 
-.animationRightLeft {
-            animation: animationRightLeft 10s ease-in-out infinite;
-        }
+    .reset-pass>a {
+      text-align: right;
+      margin-bottom: 10px;
+    }
 
-        .animationLeftRight {
-            animation: animationLeftRight 10s ease-in-out infinite;
-        }
+    .grid--50-50 {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      align-items: center;
+    }
 
-        .tans3s {
-            animation: animationLeftRight 10s ease-in-out infinite;
-        }
+    .field input {
+      font-size: 16px;
+      line-height: 28px;
+      padding: 8px 16px;
+      width: 100%;
+      min-height: 44px;
+      border: unset;
+      border-radius: 4px;
+      outline-color: rgb(84 105 212 / 0.5);
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+    }
 
-        .tans4s {
-            animation: animationLeftRight 17s ease-in-out infinite;
-        }
+    button {
+      font-size: 16px;
+      line-height: 28px;
+      padding: 8px 16px;
+      width: 100%;
+      min-height: 44px;
+      border: unset;
+      border-radius: 4px;
+      outline-color: rgb(84 105 212 / 0.5);
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+    }
 
-@keyframes animationLeftRight {
-  0% {
-    transform: translateX(0px);
-  }
-  50% {
-    transform: translateX(1000px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
-} 
+    button {
+      background-color: rgb(84, 105, 212);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 1px 0px,
+        rgb(84, 105, 212) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(60, 66, 87, 0.08) 0px 2px 5px 0px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-@keyframes animationRightLeft {
-  0% {
-    transform: translateX(0px);
-  }
-  50% {
-    transform: translateX(-1000px);
-  }
-  100% {
-    transform: translateX(0px);
-  }
-} 
-    </style>
+    .inputpass {
+      font-size: 16px;
+      line-height: 28px;
+      padding: 8px 16px;
+      width: 80%;
+      min-height: 44px;
+      border: unset;
+      border-radius: 4px;
+      outline-color: rgb(84 105 212 / 0.5);
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+    }
+
+    .passdiv {
+      display: flex;
+    }
+
+    .see {
+      width: 20%;
+      height: inherit;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+
+    }
+
+    .see {
+      color: black;
+      min-height: 44px;
+      border: unset;
+      border-radius: 4px;
+      outline-color: rgb(84 105 212 / 0.5);
+      background-color: rgb(255, 255, 255);
+      box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(60, 66, 87, 0.16) 0px 0px 0px 1px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+        rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+    }
+
+    .material-symbols-outlined {
+      margin: 0;
+      padding: 0;
+    }
+
+    .field-checkbox input {
+      width: 20px;
+      height: 15px;
+      margin-right: 5px;
+      box-shadow: unset;
+      min-height: unset;
+    }
+
+    .field-checkbox label {
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+
+    a.ssolink {
+      display: block;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .footer-link span {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .listing a {
+      color: #697386;
+      font-weight: 600;
+      margin: 0 10px;
+    }
+
+    .animationRightLeft {
+      animation: animationRightLeft 10s ease-in-out infinite;
+    }
+
+    .animationLeftRight {
+      animation: animationLeftRight 10s ease-in-out infinite;
+    }
+
+    .tans3s {
+      animation: animationLeftRight 10s ease-in-out infinite;
+    }
+
+    .tans4s {
+      animation: animationLeftRight 17s ease-in-out infinite;
+    }
+
+    @keyframes animationLeftRight {
+      0% {
+        transform: translateX(0px);
+      }
+
+      50% {
+        transform: translateX(1000px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    @keyframes animationRightLeft {
+      0% {
+        transform: translateX(0px);
+      }
+
+      50% {
+        transform: translateX(-1000px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+  </style>
 </head>
+
 <body>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
       <div class="loginbackground box-background--white padding-top--64">
         <div class="loginbackground-gridContainer">
           <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
-            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+            <div class="box-root"
+              style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
             </div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
@@ -361,47 +406,48 @@ a.ssolink {
               <div id="stripe-login">
                 <div class="field padding-bottom--24">
                   <label for="Name">Name</label>
-                  <input type="text" name="Name" id="name" >
+                  <input type="text" name="Name" id="name">
                 </div>
-                
+
                 <div class="field padding-bottom--24">
                   <label for="email">Email</label>
-                  <input type="email" name="email" id="email" >
+                  <input type="email" name="email" id="email">
                 </div>
                 <div class="field padding-bottom--24">
                   <label for="phonenumber">Phone number</label>
-                  <input type="number" name="phonenumber" id="phonenumber" >
+                  <input type="number" name="phonenumber" id="phonenumber">
                 </div>
                 <div class="field padding-bottom--24">
                   <label for="password">Password</label>
-                 
+
                   <div class="passdiv">
                     <input name="password" class="inputpass" id="password" type="password">
                     <button class="see" id="Passwordbut" onclick="checkpass()"><span class="material-symbols-outlined">
                         visibility_off
-                        </span></button>
-                </div>
+                      </span></button>
+                  </div>
                 </div>
                 <div class="field padding-bottom--24">
                   <label for="confirmpassword">Confirm password</label>
                   <div class="passdiv">
                     <input name="confirmpassword" class="inputpass" id="confirmpassword" type="password">
-                    <button class="see" id="Passwordbut2" onclick="checkpass2()"><span class="material-symbols-outlined">
+                    <button class="see" id="Passwordbut2" onclick="checkpass2()"><span
+                        class="material-symbols-outlined">
                         visibility_off
-                        </span></button>
+                      </span></button>
+                  </div>
                 </div>
-                </div>
-                
-               
+
+
                 <div class="field padding-bottom--24">
                   <button onclick="sub()">sign up</button>
                 </div>
-               
-                
-            </div>
+
+
+              </div>
             </div>
           </div>
-        
+
         </div>
       </div>
     </div>
@@ -410,75 +456,75 @@ a.ssolink {
 
 </html>
 <script>
-  let checked=JSON.parse(localStorage.getItem("userinfo"))
+  let checked = JSON.parse(localStorage.getItem("userinfo"))
   console.log(checked);
-    let name = document.getElementById("name")
-    let email = document.getElementById("email")
-    let phonenumber = document.getElementById("phonenumber")
-    let password = document.getElementById("password")
-    let confirmpassword = document.getElementById("confirmpassword")
+  let name = document.getElementById("name")
+  let email = document.getElementById("email")
+  let phonenumber = document.getElementById("phonenumber")
+  let password = document.getElementById("password")
+  let confirmpassword = document.getElementById("confirmpassword")
 
-   
-    function checkpass() {
-        if (document.getElementById("password").type == "password") {
-            document.getElementById("password").type = "text"
-            document.getElementById("Passwordbut").innerHTML = `<span class="material-symbols-outlined">
+
+  function sub() {
+
+
+    if (password.value != confirmpassword.value) {
+      alert("incorrect password")
+    } else if (name.value == "" || email.value == "" || phonenumber.value == "" || password.value == "" || confirmpassword.value == "") {
+      alert("input details")
+    }
+    else {
+      let userarray = {
+        name: name.value,
+        email: email.value,
+        phonenumber: phonenumber.value,
+        password: password.value,
+      }
+      if (checked == null) {
+        checked = []
+        checked.push(userarray)
+        localStorage.setItem("userinfo", JSON.stringify(checked))
+      } else {
+        checked.push(userarray)
+        localStorage.setItem("userinfo", JSON.stringify(checked))
+      }
+      window.location.href = "login.html"
+    }
+
+    password.value = ""
+    confirmpassword.value = ""
+
+  }
+
+
+
+  function checkpass() {
+    if (document.getElementById("password").type == "password") {
+      document.getElementById("password").type = "text"
+      document.getElementById("Passwordbut").innerHTML = `<span class="material-symbols-outlined">
 visibility
 </span>`
-        } else {
-            document.getElementById("password").type = "password"
-            document.getElementById("Passwordbut").innerHTML = `<span class="material-symbols-outlined">
+    } else {
+      document.getElementById("password").type = "password"
+      document.getElementById("Passwordbut").innerHTML = `<span class="material-symbols-outlined">
 visibility_off
 </span>`
-        }
     }
-   
-    function checkpass2() {
-        if (document.getElementById("confirmpassword").type == "password") {
-            document.getElementById("confirmpassword").type = "text"
-            document.getElementById("Passwordbut2").innerHTML = `<span class="material-symbols-outlined">
+  }
+
+  function checkpass2() {
+    if (document.getElementById("confirmpassword").type == "password") {
+      document.getElementById("confirmpassword").type = "text"
+      document.getElementById("Passwordbut2").innerHTML = `<span class="material-symbols-outlined">
 visibility
 </span>`
-        } else {
-            document.getElementById("confirmpassword").type = "password"
-            document.getElementById("Passwordbut2").innerHTML = `<span class="material-symbols-outlined">
+    } else {
+      document.getElementById("confirmpassword").type = "password"
+      document.getElementById("Passwordbut2").innerHTML = `<span class="material-symbols-outlined">
 visibility_off
 </span>`
-        }
     }
-
-    function sub() {
-
-
-        if (password.value != confirmpassword.value) {
-            alert("incorrect password")
-        } else if ( name.value=="" || email.value ==""|| phonenumber.value==""||password.value==""|| confirmpassword.value=="") {
-            alert("input details")
-        }
-        else {
-           let userarray = {
-                name: name.value,
-                email: email.value,
-                phonenumber: phonenumber.value,
-                password: password.value,
-            }
-            if (checked == null) {
-              checked=[]
-              checked.push(userarray)
-              localStorage.setItem("userinfo",JSON.stringify(checked))
-            }else{
-              checked.push(userarray)
-              localStorage.setItem("userinfo",JSON.stringify(checked))
-            }
-            window.location.href="login.html"
-        }
-       
-          password.value=""
-           confirmpassword.value=""
-
-    }
-    
-
+  }
 
 
 </script>

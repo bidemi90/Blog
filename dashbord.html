@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./bootstrap-5.2.3-dist/css/bootstrap.min.css">
+    <script src="./bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
     <style>
         * {
             padding: 0;
@@ -399,7 +401,7 @@
         }
 
         .thepww {
-            width: 90%;
+            width: 100%;
             height: fit-content;
             max-height: 400px;
             overflow-y: auto;
@@ -486,7 +488,21 @@
 
         .headdd {
             text-transform: capitalize;
+            display: flex;
+            flex-direction: column-reverse;
         }
+        .modalitt{
+            width: 100%;
+            justify-content: flex-start;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .modalitt .divforpost .thepww{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+         }
+
     </style>
 </head>
 
@@ -578,6 +594,26 @@
         </div>
     </div>
 
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalit">
+                   
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
 </body>
 
 </html>
@@ -595,8 +631,8 @@
     let inthisplace = document.getElementById("inthisplace")
     let allthepost = document.getElementById("allthepost")
     let headdd = document.getElementById("headdd")
-    let postarray = []
-    let today = new Date()
+
+
 
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
@@ -612,68 +648,319 @@
 
 
 
-    headdd.innerHTML = `<span class="padding-bottom--15">welcome back<b class="nameit"> ${thename} </b></span>`
+   
+
+    let postarray = JSON.parse(localStorage.getItem("postarray"))
+    console.log(postarray);
+    if (postarray == null) {
+        postarray = []
+        headdd.innerHTML = `<span class="padding-bottom--15">welcome back<b class="nameit"> ${thename} </b></span>`
+
+        function submit() {
 
 
 
-
-    function post() {
-
-        headdd.innerHTML = `<span class="padding-bottom--15">Post your blog </span>`
-
-        document.getElementById("inthisplace").style.display = "block"
-        document.getElementById("inthisplace2").style.display = "none"
-        document.getElementById("likedblog").style.display = "none"
-
-        inthisplace.innerHTML = `<div class="inputdivs"> <input class="title" type="text" placeholder="TITLE" id="title">
-        <textarea name=""  class="textarea" value="" placeholder="TEXT" id="textarea" cols="30" rows="10">
-           
-        </textarea></div>
-        <div class="buttdiv"><button class="submit" onclick="submit()">submit</button>
-        <button class="clear" onclick="clearinput()">clear</button></div>`
-
-    }
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
+            if (document.getElementById("title").value == "" || document.getElementById("textarea").value == "") {
+                alert("fill input space")
+            } else {
 
 
+                let onepostatatime = {
+                    title: document.getElementById("title").value,
+                    text: document.getElementById("textarea").value,
+                    time: `${days[new Date().getDay()]} ${months[new Date().getMonth()]} ${new Date().getDate()} ${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+                    Author: thename,
+                    change: false
+                }
 
-    function submit() {
-        headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
-        if (document.getElementById("title").value == "" || document.getElementById("textarea").value == "") {
-            alert("fill input space")
-        } else {
-            if (today != Date()) {
-                let newtoday = new Date()
 
-                postarray.push(
-                    {
-                        title: document.getElementById("title").value,
-                        text: document.getElementById("textarea").value,
-                        time: `${days[newtoday.getDay()]},${months[newtoday.getMonth()]},${newtoday.getFullYear()}&nbsp ${newtoday.getHours()}: ${newtoday.getMinutes()}:${newtoday.getSeconds()}`,
-                        Author: thename,
-                        change: false
+                postarray.push(onepostatatime)
+                console.log(onepostatatime);
+
+                document.getElementById("inthisplace2").innerHTML = ""
+
+                for (let index = 0; index < postarray.length; index++) {
+                    const abdullahi = postarray[index];
+
+                    
+    
+                
+
+                    document.getElementById("inthisplace2").innerHTML += `
+                    <button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
+
+                    if (postarray[index].change == false) {
+                        document.getElementById(index).style.background = "white"
+                        document.getElementById(index).style.color = "black"
+                        document.getElementById(index).innerHTML = "like"
+                    } else {
+                        document.getElementById(index).style.background = "blue"
+                        document.getElementById(index).style.color = "white"
+                        document.getElementById(index).innerHTML = "unlike"
                     }
-                )
+                }
+
+
+
+
+
+                document.getElementById("inthisplace").style.display = "none"
+                document.getElementById("inthisplace2").style.display = "block"
+                document.getElementById("likedblog").style.display = "none"
+
+
+            }
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
+        }
+        function modalit(index) {
+            document.getElementById("modalit").innerHTML=`
+                        <div class="divforpost"><h1 class="youandme"> ${postarray[index].title} </h1><p class="thepww">${postarray[index].text} </p>
+                <p> Author:${postarray[index].Author}</p>
+                    <p> ${postarray[index].time} </div>`
+        }
+        function post() {
+
+            headdd.innerHTML = `<span class="padding-bottom--15">Post your blog </span>`
+
+            document.getElementById("inthisplace").style.display = "block"
+            document.getElementById("inthisplace2").style.display = "none"
+            document.getElementById("likedblog").style.display = "none"
+
+            inthisplace.innerHTML = `<div class="inputdivs"> <input class="title" type="text" placeholder="TITLE" id="title">
+<textarea name=""  class="textarea" value="" placeholder="TEXT" id="textarea" cols="30" rows="10">
+   
+</textarea></div>
+<div class="buttdiv"><button class="submit" onclick="submit()">submit</button>
+<button class="clear" onclick="clearinput()">clear</button></div>`
+
+        }
+
+
+
+        function clearinput() {
+            document.getElementById("title").value = ""
+            document.getElementById("textarea").value = ""
+        }
+
+        function view() {
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
+
+            document.getElementById("inthisplace2").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const abdullahi = postarray[index];
+
+                document.getElementById("inthisplace2").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
+
+                if (postarray[index].change == false) {
+                    document.getElementById(index).style.background = "white"
+                    document.getElementById(index).style.color = "black"
+                    document.getElementById(index).innerHTML = "like"
+                } else {
+                    document.getElementById(index).style.background = "blue"
+                    document.getElementById(index).style.color = "white"
+                    document.getElementById(index).innerHTML = "unlike"
+                }
+            }
+
+
+
+
+            document.getElementById("inthisplace").style.display = "none"
+            document.getElementById("inthisplace2").style.display = "block"
+            document.getElementById("likedblog").style.display = "none"
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
+        }
+
+
+        function liked() {
+
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your liked blogs</span>`
+            document.getElementById("likedblog").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const element = postarray[index];
+
+                if (postarray[index].change == false) {
+
+                    continue
+
+                } else {
+                    document.getElementById("likedblog").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${element.title} </h1><p class="thepww">${element.text} </p>
+                <p> Author:${element.Author}</p>
+                    <p> ${element.time} </div></button>
+                       `
+
+                }
+
+
+            }
+
+            document.getElementById("inthisplace").style.display = "none"
+            document.getElementById("inthisplace2").style.display = "none"
+            document.getElementById("likedblog").style.display = "block"
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
+        }
+
+        function like(i) {
+
+            if (postarray[i].change == true) {
+                postarray[i].change = false
+                document.getElementById(i).style.background = "white"
+                document.getElementById(i).style.color = "black"
+                document.getElementById(i).innerHTML = "like"
+            } else {
+                postarray[i].change = true
+                document.getElementById(i).style.background = "blue"
+                document.getElementById(i).style.color = "white"
+                document.getElementById(i).innerHTML = "unlike"
+            }
+
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+        }
+
+        function unlike(i) {
+            if (postarray[i].change == true) {
+                postarray[i].change = false
+            } else {
+                postarray[i].change = true
+            }
+            document.getElementById("likedblog").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const element = postarray[index];
+
+                if (postarray[index].change == false) {
+
+                    continue
+
+                } else {
+                    document.getElementById("likedblog").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv"> <button id="${index}" class="unlike" onclick="unlike(${index})">unlike</button>  </div> </div>`
+
+                }
+
+
+            }
+
+
+
+
+            document.getElementById("inthisplace").style.display = "none";
+            document.getElementById("inthisplace2").style.display = "none";
+            document.getElementById("likedblog").style.display = "block";
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+        }
+
+
+        function del(i) {
+
+            postarray.splice(i, 1)
+
+
+            document.getElementById("inthisplace2").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const abdullahi = postarray[index];
+
+                document.getElementById("inthisplace2").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
+
+                if (postarray[index].change == false) {
+                    document.getElementById(index).style.background = "white"
+                    document.getElementById(index).style.color = "black"
+                    document.getElementById(index).innerHTML = "like"
+                } else {
+                    document.getElementById(index).style.background = "blue"
+                    document.getElementById(index).style.color = "white"
+                    document.getElementById(index).innerHTML = "unlike"
+                }
+            }
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
+        }
+
+
+
+
+    } else {
+   
+         view()
+         headdd.innerHTML += `<span class="padding-bottom--15">welcome back<b class="nameit"> ${thename} </b></span>`
+
+        function submit() {
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
+            if (document.getElementById("title").value == "" || document.getElementById("textarea").value == "") {
+                alert("fill input space")
+            } else {
+
+                let onepostatatime = {
+                    title: document.getElementById("title").value,
+                    text: document.getElementById("textarea").value,
+                    time: `${days[new Date().getDay()]} ${months[new Date().getMonth()]} ${new Date().getDate()} ${new Date().getFullYear()} ${new Date().getHours()}:${new Date().getMinutes()}:${new Date().getSeconds()}`,
+                    Author: thename,
+                    change: false
+                }
+
+                postarray.push(onepostatatime)
 
 
                 document.getElementById("inthisplace2").innerHTML = ""
 
                 for (let index = 0; index < postarray.length; index++) {
-            const abdullahi = postarray[index];
+                    const abdullahi = postarray[index];
 
-            document.getElementById("inthisplace2").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                    document.getElementById("inthisplace2").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
                 <p> Author:${abdullahi.Author}</p>
-                    <p> ${abdullahi.time} <div class="buttondiv"><button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div></div>`
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
 
-            if (postarray[index].change == false) {
-                document.getElementById(index).style.background = "white"
-                document.getElementById(index).style.color = "black"
-                document.getElementById(index).innerHTML = "like"
-            } else {
-                document.getElementById(index).style.background = "blue"
-                document.getElementById(index).style.color = "white"
-                document.getElementById(index).innerHTML = "unlike"
-            }
-        }
+                    if (postarray[index].change == false) {
+                        document.getElementById(index).style.background = "white"
+                        document.getElementById(index).style.color = "black"
+                        document.getElementById(index).innerHTML = "like"
+                    } else {
+                        document.getElementById(index).style.background = "blue"
+                        document.getElementById(index).style.color = "white"
+                        document.getElementById(index).innerHTML = "unlike"
+                    }
+                }
 
 
 
@@ -684,160 +971,209 @@
                 document.getElementById("likedblog").style.display = "none"
             }
 
+
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
+        }
+       
+        function modalit(index) {
+            document.getElementById("modalit").innerHTML=`
+                        <div class="divforpost"><h1 class="youandme"> ${postarray[index].title} </h1><p class="thepww">${postarray[index].text} </p>
+                <p> Author:${postarray[index].Author}</p>
+                    <p> ${postarray[index].time} </div>`
+        }
+       
+        function post() {
+
+            headdd.innerHTML = `<span class="padding-bottom--15">Post your blog </span>`
+
+            document.getElementById("inthisplace").style.display = "block"
+            document.getElementById("inthisplace2").style.display = "none"
+            document.getElementById("likedblog").style.display = "none"
+
+            inthisplace.innerHTML = `<div class="inputdivs"> <input class="title" type="text" placeholder="TITLE" id="title">
+<textarea name=""  class="textarea" value="" placeholder="TEXT" id="textarea" cols="30" rows="10">
+   
+</textarea></div>
+<div class="buttdiv"><button class="submit" onclick="submit()">submit</button>
+<button class="clear" onclick="clearinput()">clear</button></div>`
+
         }
 
-    }
+        function clearinput() {
+            document.getElementById("title").value = ""
+            document.getElementById("textarea").value = ""
+        }
 
-    function clearinput() {
-        document.getElementById("title").value = ""
-        document.getElementById("textarea").value = ""
-    }
+        function view() {
+            
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
 
-    function view() {
-        headdd.innerHTML = `<span class="padding-bottom--15">this are all your blogs</span>`
+            document.getElementById("inthisplace2").innerHTML = ""
 
-        document.getElementById("inthisplace2").innerHTML = ""
+            for (let index = 0; index < postarray.length; index++) {
+                const abdullahi = postarray[index];
 
-        for (let index = 0; index < postarray.length; index++) {
-            const abdullahi = postarray[index];
-
-            document.getElementById("inthisplace2").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                document.getElementById("inthisplace2").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
                 <p> Author:${abdullahi.Author}</p>
-                    <p> ${abdullahi.time} <div class="buttondiv"><button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div></div>`
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
 
-            if (postarray[index].change == false) {
-                document.getElementById(index).style.background = "white"
-                document.getElementById(index).style.color = "black"
-                document.getElementById(index).innerHTML = "like"
-            } else {
-                document.getElementById(index).style.background = "blue"
-                document.getElementById(index).style.color = "white"
-                document.getElementById(index).innerHTML = "unlike"
+                if (postarray[index].change == false) {
+                    document.getElementById(index).style.background = "white"
+                    document.getElementById(index).style.color = "black"
+                    document.getElementById(index).innerHTML = "like"
+                } else {
+                    document.getElementById(index).style.background = "blue"
+                    document.getElementById(index).style.color = "white"
+                    document.getElementById(index).innerHTML = "unlike"
+                }
             }
+
+
+
+
+            document.getElementById("inthisplace").style.display = "none"
+            document.getElementById("inthisplace2").style.display = "block"
+            document.getElementById("likedblog").style.display = "none"
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
         }
 
+        function liked() {
 
+            headdd.innerHTML = `<span class="padding-bottom--15">this are all your liked blogs</span>`
+            document.getElementById("likedblog").innerHTML = ""
 
+            for (let index = 0; index < postarray.length; index++) {
+                const element = postarray[index];
 
-        document.getElementById("inthisplace").style.display = "none"
-        document.getElementById("inthisplace2").style.display = "block"
-        document.getElementById("likedblog").style.display = "none"
+                if (postarray[index].change == false) {
 
-    }
+                    continue
 
-
-    function liked() {
-
-        headdd.innerHTML = `<span class="padding-bottom--15">this are all your liked blogs</span>`
-        document.getElementById("likedblog").innerHTML = ""
-
-        for (let index = 0; index < postarray.length; index++) {
-            const element = postarray[index];
-
-            if (postarray[index].change == false) {
-
-                continue
-
-            } else {
-                document.getElementById("likedblog").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${element.title} </h1><p class="thepww">${element.text} </p>
+                } else {
+                    document.getElementById("likedblog").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${element.title} </h1><p class="thepww">${element.text} </p>
                 <p> Author:${element.Author}</p>
-                    <p> ${element.time} <div class="buttondiv"><button id="${index}" class="unlike" onclick="unlike(${index})">unlike</button>  </div></div>`
+                    <p> ${element.time} </div></button>
+                        <div class="buttondiv">
+               `
+
+                }
+
 
             }
 
+            document.getElementById("inthisplace").style.display = "none"
+            document.getElementById("inthisplace2").style.display = "none"
+            document.getElementById("likedblog").style.display = "block"
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
 
         }
 
-        document.getElementById("inthisplace").style.display = "none"
-        document.getElementById("inthisplace2").style.display = "none"
-        document.getElementById("likedblog").style.display = "block"
+        function like(i) {
 
-    }
-
-    function like(i) {
-
-        if (postarray[i].change == true) {
-            postarray[i].change = false
-            document.getElementById(i).style.background = "white"
-            document.getElementById(i).style.color = "black"
-            document.getElementById(i).innerHTML = "like"
-            console.log(postarray);
-        } else {
-            postarray[i].change = true
-            document.getElementById(i).style.background = "blue"
-            document.getElementById(i).style.color = "white"
-            document.getElementById(i).innerHTML = "unlike"
-            console.log(postarray);
-        }
-
-
-    }
-
-    function unlike(i) {
-        if (postarray[i].change == true) {
-            postarray[i].change = false
-
-            console.log(postarray);
-        } else {
-            postarray[i].change = true
-            console.log(postarray);
-        }
-        document.getElementById("likedblog").innerHTML = ""
-
-        for (let index = 0; index < postarray.length; index++) {
-            const element = postarray[index];
-
-            if (postarray[index].change == false) {
-
-                continue
-
+            if (postarray[i].change == true) {
+                postarray[i].change = false
+                document.getElementById(i).style.background = "white"
+                document.getElementById(i).style.color = "black"
+                document.getElementById(i).innerHTML = "like"
             } else {
-                document.getElementById("likedblog").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${element.title} </h1><p class="thepww">${element.text} </p>
-                <p> Author:${element.Author}</p>
-                    <p> ${element.time} <div class="buttondiv"><button id="${index}" class="unlike" onclick="unlike(${index})">unlike</button>  </div></div>`
-
+                postarray[i].change = true
+                document.getElementById(i).style.background = "blue"
+                document.getElementById(i).style.color = "white"
+                document.getElementById(i).innerHTML = "unlike"
             }
 
+            console.log(postarray);
 
+            localStorage.setItem('postarray', JSON.stringify(postarray))
         }
 
-
-
-
-        document.getElementById("inthisplace").style.display = "none";
-        document.getElementById("inthisplace2").style.display = "none";
-        document.getElementById("likedblog").style.display = "block";
-    }
-
-
-    function del(i) {
-
-        postarray.splice(i, 1)
-
-
-        document.getElementById("inthisplace2").innerHTML = ""
-
-        for (let index = 0; index < postarray.length; index++) {
-            const abdullahi = postarray[index];
-
-            document.getElementById("inthisplace2").innerHTML += `<div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
-        <p> Author:${abdullahi.Author}</p>
-            <p> ${abdullahi.time} <div class="buttondiv"><button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div></div>`
-
-            if (postarray[index].change == false) {
-                document.getElementById(index).style.background = "white"
-                document.getElementById(index).style.color = "black"
-                document.getElementById(index).innerHTML = "like"
+        function unlike(i) {
+            if (postarray[i].change == true) {
+                postarray[i].change = false
             } else {
-                document.getElementById(index).style.background = "blue"
-                document.getElementById(index).style.color = "white"
-                document.getElementById(index).innerHTML = "unlike"
+                postarray[i].change = true
             }
+            document.getElementById("likedblog").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const element = postarray[index];
+
+                if (postarray[index].change == false) {
+
+                    continue
+
+                } else {
+                    document.getElementById("likedblog").innerHTML +=  `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv"> <button id="${index}" class="unlike" onclick="unlike(${index})">unlike</button>  </div> </div>`
+                
+
+                }
+
+
+            }
+
+
+
+
+            document.getElementById("inthisplace").style.display = "none";
+            document.getElementById("inthisplace2").style.display = "none";
+            document.getElementById("likedblog").style.display = "block";
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+        }
+
+        function del(i) {
+
+            postarray.splice(i, 1)
+
+
+            document.getElementById("inthisplace2").innerHTML = ""
+
+            for (let index = 0; index < postarray.length; index++) {
+                const abdullahi = postarray[index];
+
+                document.getElementById("inthisplace2").innerHTML += `<button type="button" class="btn modalitt" onclick="modalit(${index})" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <div class="divforpost"><h1 class="youandme"> ${abdullahi.title} </h1><p class="thepww">${abdullahi.text} </p>
+                <p> Author:${abdullahi.Author}</p>
+                    <p> ${abdullahi.time} </div></button>
+                        <div class="buttondiv">
+                <button class="likebut" id="${index}" onclick='like(${index})' >like</button>  <button class="deletebut" onclick="del(${index})">delete</button> </div>`
+
+                if (postarray[index].change == false) {
+                    document.getElementById(index).style.background = "white"
+                    document.getElementById(index).style.color = "black"
+                    document.getElementById(index).innerHTML = "like"
+                } else {
+                    document.getElementById(index).style.background = "blue"
+                    document.getElementById(index).style.color = "white"
+                    document.getElementById(index).innerHTML = "unlike"
+                }
+            }
+            console.log(postarray);
+
+            localStorage.setItem('postarray', JSON.stringify(postarray))
+
         }
 
 
-    }
 
+    }
 
     function logout() {
         window.location.href = "login.html"
