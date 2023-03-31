@@ -8,6 +8,10 @@
   let confirmpassword = document.getElementById("confirmpassword")
 
 
+  function login() {
+    location.href="login.html"
+  }
+
   function sub() {
 
 
